@@ -2,6 +2,8 @@
 
 A modern **Angular 19** application that visualizes event-based process data using **D3.js**. This tool helps users explore process flows, identify bottlenecks, and track Key Performance Indicators (KPIs) over time.
 
+<img width="1441" height="950" alt="Screenshot 2026-01-08 at 12 35 26" src="https://github.com/user-attachments/assets/ce343eff-a752-4bfb-bb92-245509761e7a" />
+
 ## 🚀 Features
 
 ### 1. Process Flow Diagram
