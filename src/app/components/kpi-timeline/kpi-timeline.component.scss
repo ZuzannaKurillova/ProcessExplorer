@@ -1,0 +1,69 @@
+.chart-container {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+h3 {
+  margin: 0 0 4px 0;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.chart-subtitle {
+  margin: 0 0 8px 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-dot.duration {
+  background: #2196F3;
+}
+
+.legend-dot.count {
+  background: #4CAF50;
+}
+
+svg {
+  flex: 1;
+  min-height: 200px;
+}
+
+.tooltip {
+  position: absolute;
+  background: var(--tooltip-bg);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 100;
+}

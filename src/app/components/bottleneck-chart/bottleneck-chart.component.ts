@@ -6,38 +6,8 @@ import { ProcessDataService } from '../../services/process-data.service';
 @Component({
     selector: 'app-bottleneck-chart',
     standalone: true,
-    template: `
-    <div class="chart-container">
-      <h3>Bottleneck Analysis</h3>
-      <p class="chart-subtitle">Average duration per activity (minutes)</p>
-      <svg #chart></svg>
-    </div>
-  `,
-    styles: [`
-    .chart-container {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    h3 {
-      margin: 0 0 4px 0;
-      color: var(--text-primary);
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-    .chart-subtitle {
-      margin: 0 0 16px 0;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-    }
-    svg {
-      flex: 1;
-      min-height: 250px;
-    }
-  `]
+    templateUrl: './bottleneck-chart.component.html',
+    styleUrl: './bottleneck-chart.component.scss'
 })
 export class BottleneckChartComponent {
     stats = input.required<ActivityStats[]>();
@@ -76,7 +46,6 @@ export class BottleneckChartComponent {
         const g = svg.append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
-        // Scales
         const xScale = d3.scaleLinear()
             .domain([0, d3.max(stats, d => d.avgDuration) || 1])
             .range([0, innerWidth]);
@@ -95,7 +64,6 @@ export class BottleneckChartComponent {
             return '#4CAF50';
         };
 
-        // Draw bars
         const bars = g.selectAll('rect')
             .data(stats)
             .join('rect')
@@ -108,12 +76,10 @@ export class BottleneckChartComponent {
             .attr('x', 0)
             .attr('width', 0);
 
-        // Animate bars
         bars.transition()
             .duration(600)
             .attr('width', d => xScale(d.avgDuration));
 
-        // Duration labels on bars
         g.selectAll('.value-label')
             .data(stats)
             .join('text')
@@ -126,7 +92,6 @@ export class BottleneckChartComponent {
             .attr('opacity', d => this.getBarOpacity(d.activity))
             .text(d => d.avgDuration > 0 ? `${Math.round(d.avgDuration)}m` : '');
 
-        // Y axis (activity names)
         g.append('g')
             .attr('class', 'y-axis')
             .call(d3.axisLeft(yScale).tickSize(0))
@@ -141,18 +106,15 @@ export class BottleneckChartComponent {
                 this.dataService.toggleActivity(d as string);
             });
 
-        // Click on bars
         bars.on('click', (event, d) => {
             event.stopPropagation();
             this.dataService.toggleActivity(d.activity);
         });
 
-        // Click on background to deselect
         svg.on('click', () => {
             this.dataService.selectActivity(null);
         });
 
-        // X axis
         g.append('g')
             .attr('class', 'x-axis')
             .attr('transform', `translate(0,${innerHeight})`)

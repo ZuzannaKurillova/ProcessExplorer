@@ -18,38 +18,8 @@ interface D3Link extends d3.SimulationLinkDatum<D3Node> {
 @Component({
     selector: 'app-process-graph',
     standalone: true,
-    template: `
-    <div class="chart-container">
-      <h3>Process Flow Diagram</h3>
-      <p class="chart-subtitle">Click on a node to filter all views</p>
-      <svg #chart></svg>
-    </div>
-  `,
-    styles: [`
-    .chart-container {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    h3 {
-      margin: 0 0 4px 0;
-      color: var(--text-primary);
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-    .chart-subtitle {
-      margin: 0 0 16px 0;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-    }
-    svg {
-      flex: 1;
-      min-height: 300px;
-    }
-  `]
+    templateUrl: './process-graph.component.html',
+    styleUrl: './process-graph.component.scss'
 })
 export class ProcessGraphComponent {
     nodes = input.required<ProcessNode[]>();
