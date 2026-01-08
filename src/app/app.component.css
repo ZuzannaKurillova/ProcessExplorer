@@ -1,0 +1,106 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+}
+
+.app-header {
+  padding: 24px 32px;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #4CAF50, #2196F3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-header .subtitle {
+  margin: 6px 0 0 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.clear-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.clear-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.dashboard {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.chart-cell {
+  min-height: 320px;
+}
+
+.chart-cell.process-graph {
+  grid-row: span 2;
+}
+
+.chart-cell.bottleneck {
+  min-height: 350px;
+}
+
+.chart-cell.timeline {
+  min-height: 300px;
+}
+
+.app-footer {
+  padding: 16px 32px;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.app-footer p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-cell.process-graph {
+    grid-row: auto;
+  }
+
+  .app-header,
+  .dashboard,
+  .app-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

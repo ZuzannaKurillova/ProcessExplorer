@@ -1,0 +1,38 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>Process Performance Explorer</h1>
+    <p class="subtitle">Analyze process flows, identify bottlenecks, and track KPIs</p>
+    @if (selectedActivity()) {
+      <button class="clear-btn" (click)="clearSelection()">
+        Clear filter: {{ selectedActivity() }}
+      </button>
+    }
+  </header>
+
+  <main class="dashboard">
+    <div class="chart-grid">
+      <div class="chart-cell process-graph">
+        <app-process-graph
+          [nodes]="processNodes()"
+          [links]="processLinks()"
+        />
+      </div>
+
+      <div class="chart-cell bottleneck">
+        <app-bottleneck-chart
+          [stats]="activityStats()"
+        />
+      </div>
+
+      <div class="chart-cell timeline">
+        <app-kpi-timeline
+          [kpis]="dailyKPIs()"
+        />
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>Process Mining Dashboard • Built with Angular + D3.js</p>
+  </footer>
+</div>

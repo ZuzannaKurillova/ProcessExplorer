@@ -1,101 +1,93 @@
-# ProcessExplorer
+# Process Performance Explorer
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A modern **Angular 19** application that visualizes event-based process data using **D3.js**. This tool helps users explore process flows, identify bottlenecks, and track Key Performance Indicators (KPIs) over time.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## 🚀 Features
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+### 1. Process Flow Diagram
+**"How does the process actually run?"**
+- A force-directed graph showing the journey of all cases.
+- **Nodes (Circles):** Represent process activities. Bigger nodes = more frequent activities.
+- **Links (Arrows):** Represent transitions between steps. Thicker lines = more common paths.
+- **Interaction:** Click any node to filter the entire dashboard by that activity.
 
-## Run tasks
+### 2. Bottleneck Analysis
+**"Where are we losing time?"**
+- A bar chart visualizing the **average duration** of each activity.
+- **Red Bars:** Critical bottlenecks (slowest steps).
+- **Green Bars:** Efficient steps (fastest steps).
+- Helps identify which part of the process needs optimization (e.g., "Order Shipped" taking 15 hours vs. "Payment Received" taking 2 hours).
 
-To run the dev server for your app, use:
+### 3. KPI Timeline
+**"Are we getting faster or slower?"**
+- A dual-axis line chart tracking performance over time.
+- **🔵 Blue Line (Efficiency):** Average Case Duration (Hours). Lower is better. Shows how long it takes to complete an order from start to finish.
+- **🟢 Green Line (Throughput):** Completed Cases (Count). Higher is better. Shows how many orders were finished on that specific day.
+- **Insight:** Allows you to correlate speed vs. volume (e.g., "Did our speed drop when volume spiked?").
 
-```sh
-npx nx serve process-explorer
+### 4. Cross-Filtering
+- Interactive data exploration.
+- Clicking on a chart element (like a bar or node) instantly filters all other charts to focus on that specific activity.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Angular 19 (Standalone Components, Signals, Control Flow)
+- **Visualization:** D3.js v7
+- **Tooling:** Nx Monorepo
+- **Styling:** CSS Variables (Dark Theme)
+
+---
+
+## 🏁 Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/process-performance-explorer.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd process-explorer
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the App
+
+Start the development server:
+
+```bash
+npm start
+# OR
+npx nx serve
 ```
 
-To create a production bundle:
+Open your browser and navigate to `http://localhost:4200`.
 
-```sh
-npx nx build process-explorer
+---
+
+## 📂 Project Structure
+
 ```
-
-To see all available targets to run for a project, run:
-
-```sh
-npx nx show project process-explorer
+src/app/
+├── components/
+│   ├── process-graph/       # D3 Force-directed graph
+│   ├── bottleneck-chart/    # D3 Bar chart
+│   └── kpi-timeline/        # D3 Dual-axis line chart
+├── models/
+│   └── event-log.model.ts   # TypeScript interfaces
+├── services/
+│   └── process-data.service.ts # Data processing & Signals
+└── app.component.ts         # Main layout
 ```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/angular:app demo
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/angular:lib mylib
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
-```
-
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
