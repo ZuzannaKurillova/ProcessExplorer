@@ -35,8 +35,8 @@ A modern **Angular 21** application that visualizes event-based process data usi
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Angular 19 (Standalone Components, Signals, Control Flow)
-- **Visualization:** D3.js v7
+- **Framework:** Angular 21 (Standalone Components, Signals, Control Flow)
+- **Visualization:** D3.js v7.9
 - **Tooling:** Nx Monorepo
 - **Styling:** CSS Variables (Dark Theme)
 
